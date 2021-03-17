@@ -8,43 +8,33 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         sb.append("Созданы директории и файлы: \n");
 
-        File src = new File("/Users/admin/Games", "src");
-        setDir(src, sb);
+        //структура директорий
+        File[] dirs  = {
+                new File("/Users/admin/Games", "src"),
+                new File("/Users/admin/Games", "res"),
+                new File("/Users/admin/Games", "savegames"),
+                new File("/Users/admin/Games", "temp"),
+                new File("/Users/admin/Games/src/", "test"),
+                new File("/Users/admin/Games/src/", "main"),
+                new File("/Users/admin/Games/res", "drawables"),
+                new File("/Users/admin/Games/res", "vectors"),
+                new File("/Users/admin/Games/res", "icons"),
+        };
+        for (File dir : dirs) {
+            setDir(dir, sb);
+        }
 
-        File res = new File("/Users/admin/Games", "res");
-        setDir(res, sb);
+        //структура файлов
+        File[] files = {
+                new File("/Users/admin/Games/temp", "temp.txt"),
+                new File("/Users/admin/Games/src/main", "Utils.java"),
+                new File("/Users/admin/Games/src/main", "Main.java"),
+        };
+        for (File f : files) {
+            setFile(f, sb);
+        }
 
-        File savegames = new File("/Users/admin/Games", "savegames");
-        setDir(savegames, sb);
-
-        File temp = new File("/Users/admin/Games", "temp");
-        setDir(temp, sb);
-
-        File tempTxt = new File(temp, "temp.txt");
-        setFile(tempTxt, sb);
-
-        File main = new File(src, "main");
-        setDir(main, sb);
-
-        File utilsJava = new File(main, "Utils.java");
-        setFile(utilsJava, sb);
-
-        File test = new File(src, "test");
-        setDir(test, sb);
-
-        File mainJava = new File(main, "Main.java");
-        setFile(mainJava, sb);
-
-        File drawables = new File(res, "drawables");
-        setDir(drawables, sb);
-
-        File vectors = new File(res, "vectors");
-        setDir(vectors, sb);
-
-        File icons = new File(res, "icons");
-        setDir(icons, sb);
-
-        FileWriter writer = new FileWriter(tempTxt, true);
+        FileWriter writer = new FileWriter(files[0], true);
         writer.write(sb.toString());
         writer.close();
     }
